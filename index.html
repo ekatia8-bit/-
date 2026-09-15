@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>УЧИМ СЛОВА — English Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #000;
+    --lime: #C8FF2E;
+    --lime-light: #E4FF8A;
+    --cream: #F7F4EC;
+    --white: #fff;
+    --error: #FF4757;
+    --success: #7CFF6B;
+    --card: rgba(10, 10, 10, 0.88);
+    --card-border: rgba(200, 255, 46, 0.15);
+  }
+  html, body {
+    background: #000;
+    color: var(--white);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+  }
+
+  body {
+    background: #000;
+    min-height: 100vh;
+    padding: 16px;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Cg fill='none' stroke='%23C8FF2E' stroke-width='1.2' opacity='0.18'%3E%3Cpath d='M0,60 L60,60 L60,30 L120,30 L120,90 L180,90 L180,60 L240,60 L240,120 L300,120'/%3E%3Cpath d='M0,150 L50,150 L50,100 L100,100 L100,180 L150,180 L150,140 L220,140 L220,200 L280,200 L280,160 L300,160'/%3E%3Cpath d='M0,240 L40,240 L40,200 L90,200 L90,260 L140,260 L140,220 L200,220 L200,280 L260,280 L260,240 L300,240'/%3E%3Cpath d='M60,0 L60,50 L30,50 L30,110 L90,110 L90,80 L150,80 L150,140 L120,140 L120,200 L180,200 L180,170 L240,170 L240,230 L210,230 L210,300'/%3E%3Cpath d='M150,0 L150,40 L180,40 L180,100 L240,100 L240,70 L300,70'/%3E%3Cpath d='M240,0 L240,50 L270,50 L270,110 L210,110 L210,80 L150,80'/%3E%3Cpath d='M0,30 L30,30 L30,90 L80,90 L80,60 L140,60 L140,120 L110,120 L110,180 L170,180 L170,150 L230,150 L230,210 L200,210 L200,270 L260,270 L260,240 L300,240'/%3E%3Cpath d='M30,300 L30,260 L70,260 L70,220 L130,220 L130,250 L190,250 L190,210 L250,210 L250,240 L300,240'/%3E%3Cpath d='M90,0 L90,40 L120,40 L120,100 L60,100 L60,70 L0,70'/%3E%3C/g%3E%3Cg fill='%23C8FF2E' opacity='0.25'%3E%3Ccircle cx='60' cy='60' r='3'/%3E%3Ccircle cx='120' cy='30' r='3'/%3E%3Ccircle cx='120' cy='90' r='3'/%3E%3Ccircle cx='180' cy='90' r='3'/%3E%3Ccircle cx='180' cy='60' r='3'/%3E%3Ccircle cx='240' cy='60' r='3'/%3E%3Ccircle cx='240' cy='120' r='3'/%3E%3Ccircle cx='50' cy='150' r='3'/%3E%3Ccircle cx='50' cy='100' r='3'/%3E%3Ccircle cx='100' cy='100' r='3'/%3E%3Ccircle cx='100' cy='180' r='3'/%3E%3Ccircle cx='150' cy='180' r='3'/%3E%3Ccircle cx='150' cy='140' r='3'/%3E%3Ccircle cx='220' cy='140' r='3'/%3E%3Ccircle cx='220' cy='200' r='3'/%3E%3Ccircle cx='280' cy='200' r='3'/%3E%3Ccircle cx='280' cy='160' r='3'/%3E%3Ccircle cx='40' cy='240' r='3'/%3E%3Ccircle cx='40' cy='200' r='3'/%3E%3Ccircle cx='90' cy='200' r='3'/%3E%3Ccircle cx='90' cy='260' r='3'/%3E%3Ccircle cx='140' cy='260' r='3'/%3E%3Ccircle cx='140' cy='220' r='3'/%3E%3Ccircle cx='200' cy='220' r='3'/%3E%3Ccircle cx='200' cy='280' r='3'/%3E%3Ccircle cx='260' cy='280' r='3'/%3E%3Ccircle cx='260' cy='240' r='3'/%3E%3Ccircle cx='60' cy='50' r='3'/%3E%3Ccircle cx='30' cy='50' r='3'/%3E%3Ccircle cx='30' cy='110' r='3'/%3E%3Ccircle cx='90' cy='110' r='3'/%3E%3Ccircle cx='90' cy='80' r='3'/%3E%3Ccircle cx='150' cy='80' r='3'/%3E%3Ccircle cx='150' cy='140' r='3'/%3E%3Ccircle cx='120' cy='140' r='3'/%3E%3Ccircle cx='120' cy='200' r='3'/%3E%3Ccircle cx='180' cy='200' r='3'/%3E%3Ccircle cx='180' cy='170' r='3'/%3E%3Ccircle cx='240' cy='170' r='3'/%3E%3Ccircle cx='240' cy='230' r='3'/%3E%3Ccircle cx='210' cy='230' r='3'/%3E%3Ccircle cx='210' cy='300' r='3'/%3E%3Ccircle cx='150' cy='40' r='3'/%3E%3Ccircle cx='180' cy='40' r='3'/%3E%3Ccircle cx='180' cy='100' r='3'/%3E%3Ccircle cx='240' cy='100' r='3'/%3E%3Ccircle cx='240' cy='70' r='3'/%3E%3Ccircle cx='240' cy='50' r='3'/%3E%3Ccircle cx='270' cy='50' r='3'/%3E%3Ccircle cx='270' cy='110' r='3'/%3E%3Ccircle cx='210' cy='110' r='3'/%3E%3Ccircle cx='210' cy='80' r='3'/%3E%3Ccircle cx='30' cy='30' r='3'/%3E%3Ccircle cx='30' cy='90' r='3'/%3E%3Ccircle cx='80' cy='90' r='3'/%3E%3Ccircle cx='80' cy='60' r='3'/%3E%3Ccircle cx='140' cy='60' r='3'/%3E%3Ccircle cx='140' cy='120' r='3'/%3E%3Ccircle cx='110' cy='120' r='3'/%3E%3Ccircle cx='110' cy='180' r='3'/%3E%3Ccircle cx='170' cy='180' r='3'/%3E%3Ccircle cx='170' cy='150' r='3'/%3E%3Ccircle cx='230' cy='150' r='3'/%3E%3Ccircle cx='230' cy='210' r='3'/%3E%3Ccircle cx='200' cy='210' r='3'/%3E%3Ccircle cx='200' cy='270' r='3'/%3E%3Ccircle cx='260' cy='270' r='3'/%3E%3Ccircle cx='260' cy='240' r='3'/%3E%3Ccircle cx='30' cy='260' r='3'/%3E%3Ccircle cx='70' cy='260' r='3'/%3E%3Ccircle cx='70' cy='220' r='3'/%3E%3Ccircle cx='130' cy='220' r='3'/%3E%3Ccircle cx='130' cy='250' r='3'/%3E%3Ccircle cx='190' cy='250' r='3'/%3E%3Ccircle cx='190' cy='210' r='3'/%3E%3Ccircle cx='250' cy='210' r='3'/%3E%3Ccircle cx='250' cy='240' r='3'/%3E%3Ccircle cx='90' cy='40' r='3'/%3E%3Ccircle cx='120' cy='40' r='3'/%3E%3Ccircle cx='120' cy='100' r='3'/%3E%3Ccircle cx='60' cy='100' r='3'/%3E%3Ccircle cx='60' cy='70' r='3'/%3E%3C/g%3E%3Cg fill='%23C8FF2E' opacity='0.3'%3E%3Crect x='135' y='135' width='30' height='30' rx='2'/%3E%3Ccircle cx='150' cy='150' r='6' fill='none' stroke='%23C8FF2E' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 300px 300px;
+    pointer-events: none;
+    z-index: 0;
+    animation: circuitGlow 4s ease-in-out infinite;
+  }
+
+  @keyframes circuitGlow { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Cg fill='%23C8FF2E'%3E%3Ccircle cx='60' cy='60' r='2'/%3E%3Ccircle cx='120' cy='90' r='2'/%3E%3Ccircle cx='180' cy='60' r='2'/%3E%3Ccircle cx='240' cy='120' r='2'/%3E%3Ccircle cx='100' cy='180' r='2'/%3E%3Ccircle cx='220' cy='200' r='2'/%3E%3Ccircle cx='140' cy='260' r='2'/%3E%3Ccircle cx='200' cy='280' r='2'/%3E%3Ccircle cx='150' cy='140' r='2'/%3E%3Ccircle cx='120' cy='200' r='2'/%3E%3Ccircle cx='240' cy='230' r='2'/%3E%3Ccircle cx='30' cy='110' r='2'/%3E%3Ccircle cx='270' cy='110' r='2'/%3E%3Ccircle cx='170' cy='180' r='2'/%3E%3Ccircle cx='230' cy='210' r='2'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 300px 300px;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(1.5px);
+    animation: dotPulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes dotPulse { 0%, 100% { opacity: 0.4; filter: blur(1px); } 50% { opacity: 1; filter: blur(2.5px); } }
+
+  .mute-btn {
+    position: fixed; top: 16px; right: 16px; z-index: 100;
+    width: 44px; height: 44px;
+    background: rgba(10,10,10,0.85);
+    border: 2px solid var(--card-border);
+    border-radius: 12px;
+    color: var(--lime); font-size: 20px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(8px);
+    transition: all .2s;
+  }
+  .mute-btn:active { transform: scale(0.92); }
+  .mute-btn.muted { color: var(--error); border-color: rgba(255,71,87,0.3); }
+
+  .menu-btn {
+    position: fixed; top: 16px; left: 16px; z-index: 100;
+    background: rgba(10,10,10,0.85);
+    border: 2px solid var(--card-border);
+    border-radius: 12px;
+    color: var(--lime);
+    font-family: inherit; font-weight: 800; font-size: 13px;
+    padding: 10px 14px;
+    cursor: pointer;
+    display: none; align-items: center; gap: 6px;
+    backdrop-filter: blur(8px);
+    transition: all .2s;
+  }
+  .menu-btn:active { transform: scale(0.92); }
+  .menu-btn.visible { display: flex; }
+
+  .score-counter {
+    position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+    z-index: 100; display: none; gap: 12px;
+    background: rgba(10,10,10,0.85);
+    border: 2px solid var(--card-border);
+    border-radius: 14px;
+    padding: 8px 16px;
+    backdrop-filter: blur(8px);
+    font-size: 14px; font-weight: 800;
+  }
+  .score-counter.visible { display: flex; }
+  .score-counter .correct-count { color: var(--success); }
+  .score-counter .wrong-count { color: var(--error); }
+  .score-counter .sep { color: var(--card-border); }
+
+  .screen {
+    max-width: 520px; margin: 0 auto; padding: 24px 8px;
+    opacity: 1; transition: opacity .4s ease, transform .4s ease;
+    position: relative; z-index: 2;
+  }
+  .screen.hidden { display: none; opacity: 0; }
+
+  .web { position: fixed; width: 200px; height: 200px; pointer-events: none; z-index: 1; opacity: 0.4; }
+  .web-tl { top: 0; left: 0; }
+  .web-tr { top: 0; right: 0; transform: scaleX(-1); }
+  .web-bl { bottom: 0; left: 0; transform: scaleY(-1); }
+  .web-br { bottom: 0; right: 0; transform: scale(-1,-1); }
+
+  .byte {
+    position: fixed; width: 22px; height: 22px;
+    background: var(--lime); border-radius: 4px;
+    box-shadow: 0 0 16px var(--lime), 0 0 32px var(--lime);
+    z-index: 1; pointer-events: auto; cursor: pointer;
+    transition: transform 0.1s;
+  }
+  .byte::before {
+    content: ''; position: absolute; top: 5px; left: 5px;
+    width: 4px; height: 4px; background: #000; border-radius: 50%;
+    box-shadow: 6px 0 0 #000;
+  }
+  .byte-1 { top: 10%; left: -22px; animation: byteMove1 9s linear infinite, sway 2s ease-in-out infinite; }
+  .byte-2 { top: 50%; right: -22px; animation: byteMove2 11s linear infinite, sway 2.5s ease-in-out infinite; }
+  .byte-3 { bottom: 15%; left: -22px; animation: byteMove3 13s linear infinite, sway 1.8s ease-in-out infinite; }
+
+  @keyframes sway { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-10px) rotate(3deg); } }
+  @keyframes byteMove1 { 0% { left: -22px; } 100% { left: calc(100% + 22px); } }
+  @keyframes byteMove2 { 0% { right: -22px; } 100% { right: calc(100% + 22px); } }
+  @keyframes byteMove3 { 0% { left: -22px; } 100% { left: calc(100% + 22px); } }
+
+  .byte.exploding { animation: byteExplode 0.6s ease-out forwards !important; pointer-events: none; }
+  @keyframes byteExplode {
+    0% { transform: scale(1) rotate(0deg); opacity: 1; box-shadow: 0 0 16px var(--lime), 0 0 32px var(--lime); }
+    30% { transform: scale(3.5) rotate(180deg); opacity: 1; box-shadow: 0 0 60px var(--lime), 0 0 100px var(--lime-light); }
+    100% { transform: scale(0) rotate(720deg); opacity: 0; }
+  }
+
+  .splash {
+    position: fixed; width: 8px; height: 8px;
+    background: var(--lime); border-radius: 50%;
+    pointer-events: none; z-index: 1;
+    box-shadow: 0 0 12px var(--lime);
+  }
+
+  .card {
+    position: relative;
+    background: var(--card);
+    border: 2px solid var(--card-border);
+    border-radius: 24px;
+    padding: 24px;
+    margin: 16px 0;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .card::before {
+    content: ''; position: absolute;
+    top: -1px; left: -1px; right: -1px; bottom: -1px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, var(--lime) 0%, transparent 40%);
+    opacity: 0.15; pointer-events: none;
+  }
+  .card .web-mini { position: absolute; top: -20px; right: -20px; width: 120px; height: 120px; opacity: 0.3; pointer-events: none; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--lime); color: #000;
+    padding: 8px 16px; border-radius: 999px;
+    font-weight: 900; font-size: 14px; letter-spacing: 1px;
+    box-shadow: 0 0 20px rgba(200,255,46,0.4);
+  }
+  .badge::before { content: ''; width: 8px; height: 8px; background: #000; border-radius: 50%; animation: pulse 1.5s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  h1 { font-size: clamp(36px, 10vw, 56px); font-weight: 900; line-height: 1.05; letter-spacing: -1px; margin: 16px 0 8px; color: var(--white); }
+  h1 .accent { color: var(--lime); }
+  p.subtitle { color: var(--cream); opacity: 0.7; font-size: 15px; font-weight: 600; margin-bottom: 20px; }
+
+  .input-wrap { position: relative; margin: 20px 0; }
+  .input-wrap label { display: block; font-size: 13px; color: var(--lime); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+  input[type="text"] {
+    width: 100%; background: rgba(5, 10, 20, 0.8);
+    border: 2px solid var(--card-border); border-radius: 14px;
+    padding: 16px 18px; color: var(--white);
+    font-family: inherit; font-size: 18px; font-weight: 700;
+    outline: none; transition: border-color .2s;
+  }
+  input[type="text"]:focus { border-color: var(--lime); }
+  input[type="text"]::placeholder { color: rgba(255,255,255,0.3); }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; background: var(--lime); color: #000;
+    border: none; border-radius: 16px;
+    padding: 18px 24px;
+    font-family: inherit; font-size: 17px; font-weight: 900; letter-spacing: 0.5px;
+    cursor: pointer; transition: transform .1s ease, box-shadow .2s;
+    box-shadow: 0 4px 0 #8fb31f, 0 0 20px rgba(200,255,46,0.3);
+    text-transform: uppercase;
+  }
+  .btn:active { transform: scale(0.96); box-shadow: 0 2px 0 #8fb31f; }
+  .btn.secondary { background: transparent; color: var(--lime); border: 2px solid var(--lime); box-shadow: none; }
+  .btn.secondary:active { background: rgba(200,255,46,0.1); }
+  .btn.ghost { background: rgba(255,255,255,0.05); color: var(--cream); box-shadow: none; border: 1px solid var(--card-border); }
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+
+  .level-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; }
+  .level-btn {
+    background: rgba(5, 10, 20, 0.8);
+    border: 2px solid var(--card-border);
+    border-radius: 14px; padding: 16px 8px;
+    color: var(--cream); font-family: inherit; font-weight: 800; font-size: 14px;
+    cursor: pointer; transition: all .2s; text-align: center;
+    backdrop-filter: blur(8px);
+  }
+  .level-btn .lvl-num { display: block; font-size: 22px; color: var(--lime); margin-bottom: 4px; }
+  .level-btn:active { transform: scale(0.95); }
+  .level-btn.active { border-color: var(--lime); background: rgba(200,255,46,0.1); color: var(--lime); }
+
+  .progress { display: flex; gap: 6px; justify-content: center; margin: 16px 0; }
+  .progress .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--card-border); transition: all .3s; }
+  .progress .dot.done { background: var(--lime); box-shadow: 0 0 8px var(--lime); }
+  .progress .dot.current { background: var(--lime-light); transform: scale(1.3); }
+
+  .word-card { text-align: center; padding: 28px 20px; }
+  
+  .word-image {
+    width: 220px; height: 220px;
+    margin: 0 auto 20px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(200,255,46,0.1), rgba(228,255,138,0.05));
+    border: 2px solid var(--card-border);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 30px rgba(200,255,46,0.2);
+    position: relative; overflow: hidden;
+  }
+  .word-image img { width: 100%; height: 100%; object-fit: contain; padding: 15px; }
+  .word-image .fallback { font-size: 110px; font-weight: 900; color: var(--lime); text-transform: uppercase; }
+  .word-image::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+    animation: shine 3s ease-in-out infinite; pointer-events: none;
+  }
+  @keyframes shine { 0%, 100% { transform: translateX(-100%); } 50% { transform: translateX(100%); } }
+  
+  .word-en { font-size: clamp(32px, 9vw, 48px); font-weight: 900; color: var(--lime); margin-bottom: 8px; letter-spacing: -1px; }
+  .word-ru { font-size: 18px; color: var(--cream); opacity: 0.8; font-weight: 700; }
+
+  .word-input-wrap { margin-top: 20px; padding-top: 20px; border-top: 2px dashed var(--card-border); }
+  .word-input-wrap label { display: block; font-size: 13px; color: var(--lime); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+  .word-input-field {
+    width: 100%; background: rgba(5, 10, 20, 0.8);
+    border: 2px solid var(--card-border); border-radius: 14px;
+    padding: 14px 18px; color: var(--white);
+    font-family: inherit; font-size: 20px; font-weight: 800;
+    outline: none; transition: border-color .2s;
+    text-align: center; text-transform: lowercase;
+  }
+  .word-input-field:focus { border-color: var(--lime); }
+  .word-input-field.correct { border-color: var(--success); background: rgba(124,255,107,0.1); color: var(--success); }
+  .word-input-field.wrong { border-color: var(--error); background: rgba(255,71,87,0.1); animation: shake .4s ease; }
+
+  .slots { display: flex; gap: 6px; justify-content: center; margin: 20px 0; min-height: 70px; flex-wrap: wrap; }
+  .slot {
+    width: 44px; height: 60px;
+    border: 2px dashed var(--card-border); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 900; color: var(--lime);
+    background: rgba(200,255,46,0.03); transition: all .2s;
+  }
+  .slot.filled { border-style: solid; border-color: var(--lime); background: rgba(200,255,46,0.1); }
+  .letters { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 20px 0; min-height: 90px; }
+  .letter-tile {
+    position: relative; width: 48px; height: 64px;
+    background: var(--card); border: 2px solid var(--lime); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; font-weight: 900; color: var(--lime);
+    cursor: pointer; transition: transform .15s;
+    animation: sway 2.5s ease-in-out infinite; transform-origin: top center;
+  }
+  .letter-tile::before {
+    content: ''; position: absolute; top: -20px; left: 50%;
+    width: 2px; height: 20px;
+    background: linear-gradient(to bottom, transparent, var(--lime));
+    transform: translateX(-50%);
+  }
+  .letter-tile:active { transform: scale(0.9); }
+  .letter-tile.used { opacity: 0.2; pointer-events: none; }
+  .letter-tile:nth-child(2n) { animation-delay: -0.5s; }
+  .letter-tile:nth-child(3n) { animation-delay: -1s; }
+  .letter-tile:nth-child(4n) { animation-delay: -1.5s; }
+
+  .options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 20px 0; }
+  .option {
+    position: relative; aspect-ratio: 1;
+    background: var(--card); border: 2px solid var(--card-border); border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all .2s;
+    animation: sway 3s ease-in-out infinite; transform-origin: top center; overflow: hidden;
+  }
+  .option img { width: 80%; height: 80%; object-fit: contain; padding: 8px; }
+  .option .fallback { font-size: 48px; font-weight: 900; color: var(--lime); text-transform: uppercase; }
+  .option::before {
+    content: ''; position: absolute; top: -24px; left: 50%;
+    width: 2px; height: 24px;
+    background: linear-gradient(to bottom, transparent, var(--lime));
+    transform: translateX(-50%);
+  }
+  .option:active { transform: scale(0.95); }
+  .option.correct { border-color: var(--success); background: rgba(124,255,107,0.15); animation: correctPulse .6s ease; }
+  .option.wrong { border-color: var(--error); background: rgba(255,71,87,0.15); animation: shake .4s ease; }
+  @keyframes correctPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+  @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+  .option:nth-child(2) { animation-delay: -0.7s; }
+  .option:nth-child(3) { animation-delay: -1.4s; }
+  .option:nth-child(4) { animation-delay: -2.1s; }
+
+  .listen-hint { text-align: center; color: var(--cream); opacity: 0.7; font-size: 14px; margin: 12px 0; }
+  .listen-hint .speaker { display: inline-block; color: var(--lime); margin-right: 6px; }
+
+  .word-display-l3 {
+    text-align: center; margin-top: 16px; padding: 16px;
+    background: rgba(5, 10, 20, 0.8);
+    border: 2px solid var(--card-border); border-radius: 14px;
+    font-size: 28px; font-weight: 900; color: var(--lime);
+    letter-spacing: 2px; text-transform: lowercase;
+  }
+
+  .stars { display: flex; justify-content: center; gap: 8px; margin: 20px 0; font-size: 48px; }
+  .star { opacity: 0.2; transition: all .4s; transform: scale(0.8); }
+  .star.on { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 8px var(--lime)); }
+  .rank { text-align: center; font-size: clamp(22px, 6vw, 32px); font-weight: 900; color: var(--lime); margin: 16px 0; text-shadow: 0 0 20px rgba(200,255,46,0.5); }
+  .learned-list { background: rgba(5, 10, 20, 0.8); border-radius: 14px; padding: 16px; margin: 16px 0; backdrop-filter: blur(8px); }
+  .learned-list h3 { font-size: 13px; color: var(--lime); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+  .learned-item { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--card-border); font-size: 15px; }
+  .learned-item:last-child { border-bottom: none; }
+  .learned-item .thumb {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: rgba(200,255,46,0.1); border: 1px solid var(--card-border);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; flex-shrink: 0;
+  }
+  .learned-item .thumb img { width: 100%; height: 100%; object-fit: contain; }
+  .learned-item .thumb .fallback { font-size: 20px; font-weight: 900; color: var(--lime); text-transform: uppercase; }
+  .learned-item .en { color: var(--lime); font-weight: 800; flex: 1; }
+  .learned-item .ru { color: var(--cream); opacity: 0.7; }
+
+  /* ===== ВИДЕО-ЭКРАН ===== */
+  .video-screen {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .video-screen.visible {
+    display: flex;
+  }
+  .video-screen video {
+    width: 100%;
+    max-width: 720px;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 16px;
+  }
+  .video-screen .video-btn {
+    margin-top: 24px;
+    max-width: 320px;
+  }
+  .video-screen .skip-hint {
+    color: var(--cream);
+    opacity: 0.5;
+    font-size: 13px;
+    margin-top: 12px;
+  }
+
+  .center { text-align: center; }
+  .mt-8 { margin-top: 8px; }
+  .mt-16 { margin-top: 16px; }
+  .mt-24 { margin-top: 24px; }
+
+  @media (max-width: 380px) {
+    .letter-tile { width: 40px; height: 56px; font-size: 22px; }
+    .slot { width: 38px; height: 52px; font-size: 20px; }
+    .word-image { width: 180px; height: 180px; }
+  }
+  @media (min-width: 600px) { body { padding: 24px; } .screen { padding: 32px 16px; } }
+</style>
+</head>
+<body>
+
+<button class="mute-btn" id="muteBtn" title="Звук"></button>
+<button class="menu-btn" id="menuBtn">← Меню</button>
+<div class="score-counter" id="scoreCounter">
+  <span class="correct-count">✓ <span id="correctCount">0</span></span>
+  <span class="sep">|</span>
+  <span class="wrong-count">✗ <span id="wrongCount">0</span></span>
+</div>
+
+<!-- ===== ЭКРАН С ВИДЕО ПОСЛЕ УРОВНЯ ===== -->
+<div class="video-screen" id="videoScreen">
+  <video id="levelVideo" autoplay loop muted playsinline></video>
+  <button class="btn video-btn" id="videoContinueBtn">Дальше →</button>
+  <div class="skip-hint">Нажми, чтобы продолжить</div>
+</div>
+
+<svg class="web web-tl" viewBox="0 0 200 200" fill="none"><g stroke="#C8FF2E" stroke-width="1" opacity="0.6"><path d="M0,0 L200,200 M0,50 L150,200 M0,100 L100,200 M0,150 L50,200"/><path d="M50,0 L200,150 M100,0 L200,100 M150,0 L200,50"/><circle cx="50" cy="50" r="2" fill="#C8FF2E"/><circle cx="100" cy="100" r="2" fill="#C8FF2E"/></g></svg>
+<svg class="web web-tr" viewBox="0 0 200 200" fill="none"><g stroke="#C8FF2E" stroke-width="1" opacity="0.6"><path d="M0,0 L200,200 M0,50 L150,200 M0,100 L100,200"/><circle cx="80" cy="80" r="2" fill="#C8FF2E"/><circle cx="120" cy="120" r="2" fill="#C8FF2E"/></g></svg>
+<svg class="web web-bl" viewBox="0 0 200 200" fill="none"><g stroke="#C8FF2E" stroke-width="1" opacity="0.5"><path d="M0,0 L200,200 M0,50 L150,200"/><circle cx="60" cy="60" r="2" fill="#C8FF2E"/></g></svg>
+<svg class="web web-br" viewBox="0 0 200 200" fill="none"><g stroke="#C8FF2E" stroke-width="1" opacity="0.5"><path d="M0,0 L200,200 M0,50 L150,200"/><circle cx="70" cy="70" r="2" fill="#C8FF2E"/></g></svg>
+
+<div class="byte byte-1"></div>
+<div class="byte byte-2"></div>
+<div class="byte byte-3"></div>
+
+<div id="screen-welcome" class="screen">
+  <div class="center"><span class="badge">ENGLISH BYTE</span></div>
+  <h1 class="center mt-16">Учим <span class="accent">СЛОВА</span></h1>
+  <p class="subtitle center">Собери, услышь, повтори — и стань English Star ★</p>
+  <div class="card">
+    <svg class="web-mini" viewBox="0 0 120 120" fill="none"><g stroke="#C8FF2E" stroke-width="1" opacity="0.6"><path d="M0,0 L120,120 M0,30 L90,120 M0,60 L60,120"/><circle cx="40" cy="40" r="2" fill="#C8FF2E"/><circle cx="80" cy="80" r="2" fill="#C8FF2E"/></g></svg>
+    <div class="input-wrap">
+      <label for="playerName">Как тебя зовут?</label>
+      <input type="text" id="playerName" placeholder="Введи имя..." maxlength="20" autocomplete="off">
+    </div>
+    <label style="display:block;font-size:13px;color:var(--lime);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;">Выбери уровень</label>
+    <div class="level-grid">
+      <button class="level-btn" data-level="1"><span class="lvl-num">1</span>Обучение</button>
+      <button class="level-btn" data-level="2"><span class="lvl-num">2</span>Собери</button>
+      <button class="level-btn" data-level="3"><span class="lvl-num">3</span>На слух</button>
+    </div>
+  </div>
+  <button class="btn mt-16" id="startBtn">▶ СТАРТ</button>
+</div>
+
+<div id="screen-level1" class="screen hidden">
+  <div class="center"><span class="badge">УРОВЕНЬ 1 · ОБУЧЕНИЕ</span></div>
+  <div class="progress" id="progress1"></div>
+  <div class="card word-card">
+    <svg class="web-mini" viewBox="0 0 120 120" fill="none"><g stroke="#C8FF2E" stroke-width="1" opacity="0.5"><path d="M0,0 L120,120 M0,40 L80,120"/><circle cx="50" cy="50" r="2" fill="#C8FF2E"/></g></svg>
+    <div class="word-image" id="l1Image"></div>
+    <div class="word-en" id="l1En">cat</div>
+    <div class="word-ru" id="l1Ru">кот</div>
+    <div class="word-input-wrap">
+      <label for="l1Input">Напиши слово:</label>
+      <input type="text" class="word-input-field" id="l1Input" placeholder="введи слово..." autocomplete="off">
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn secondary" id="l1Speak"> Озвучить</button>
+    <button class="btn" id="l1Next">Дальше →</button>
+  </div>
+</div>
+
+<div id="screen-level2" class="screen hidden">
+  <div class="center"><span class="badge">УРОВЕНЬ 2 · СОБЕРИ СЛОВО</span></div>
+  <div class="progress" id="progress2"></div>
+  <div class="card">
+    <svg class="web-mini" viewBox="0 0 120 120" fill="none"><g stroke="#C8FF2E" stroke-width="1" opacity="0.5"><path d="M0,0 L120,120 M40,0 L120,80"/><circle cx="60" cy="60" r="2" fill="#C8FF2E"/></g></svg>
+    <div class="word-image" id="l2Image" style="width:180px;height:180px;margin-bottom:16px;"></div>
+    <div class="word-ru center" id="l2Ru" style="font-size:20px;color:var(--cream);font-weight:800;margin-bottom:8px;">кот</div>
+    <div class="slots" id="l2Slots"></div>
+    <div class="letters" id="l2Letters"></div>
+  </div>
+  <div class="btn-row">
+    <button class="btn ghost" id="l2Hint">💡 Подсказка</button>
+    <button class="btn ghost" id="l2Reset">↺ Сброс</button>
+  </div>
+</div>
+
+<div id="screen-level3" class="screen hidden">
+  <div class="center"><span class="badge">УРОВЕНЬ 3 · НА СЛУХ</span></div>
+  <div class="progress" id="progress3"></div>
+  <div class="card">
+    <svg class="web-mini" viewBox="0 0 120 120" fill="none"><g stroke="#C8FF2E" stroke-width="1" opacity="0.5"><path d="M0,0 L120,120 M0,60 L60,120"/><circle cx="40" cy="40" r="2" fill="#C8FF2E"/></g></svg>
+    <div class="listen-hint"><span class="speaker">🔊</span>Слушай слово и выбери картинку</div>
+    <button class="btn secondary" id="l3Repeat" style="margin: 12px 0;">🔊 Повторить слово</button>
+    <div class="options" id="l3Options"></div>
+    <div class="word-display-l3" id="l3WordDisplay">word</div>
+  </div>
+</div>
+
+<div id="screen-results" class="screen hidden">
+  <div class="center"><span class="badge">ИТОГИ</span></div>
+  <div class="stars" id="starsRow">
+    <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+  </div>
+  <div class="rank" id="rankTitle">GOOD JOB!</div>
+  <p class="subtitle center" id="scoreText">Ты собрал 0 слов</p>
+  <div class="video-placeholder">
+    🎬 Здесь будет видео-поздравление<br>
+    <small style="opacity:0.6;">&lt;video&gt; placeholder</small>
+  </div>
+  <div class="learned-list" id="learnedList"><h3>Изученные слова</h3></div>
+  <button class="btn mt-16" id="restartBtn">🔄 ИГРАТЬ ЕЩЁ РАЗ</button>
+</div>
+
+<script>
+const WORDS = [
+  { en: 'family', ru: 'семья', img: './family.jpg?v=2' },
+  { en: 'mother', ru: 'мама', img: './mother.jpg?v=2' },
+  { en: 'father', ru: 'папа', img: './father.jpg?v=2' },
+  { en: 'brother', ru: 'брат', img: './brother.jpg?v=2' },
+  { en: 'sister', ru: 'сестра', img: './sister.jpg?v=2' },
+  { en: 'grandma', ru: 'бабушка', img: './grandma.jpg?v=2' },
+  { en: 'grandpa', ru: 'дедушка', img: './grandpa.jpg?v=2' },
+  { en: 'uncle', ru: 'дядя', img: './uncle.jpg?v=2' },
+  { en: 'aunt', ru: 'тётя', img: './aunt.jpg?v=2' },
+  { en: 'dog', ru: 'собака', img: './dog.jpg?v=2' },
+  { en: 'hamster', ru: 'хомяк', img: './hamster.jpg?v=2' },
+  { en: 'rabbit', ru: 'кролик', img: './rabbit.jpg?v=2' },
+  { en: 'parrot', ru: 'попугай', img: './parrot.jpg?v=2' },
+  { en: 'fish', ru: 'рыба', img: './fish.jpg?v=2' },
+  { en: 'cow', ru: 'корова', img: './cow.jpg?v=2' },
+  { en: 'horse', ru: 'лошадь', img: './horse.jpg?v=2' },
+  { en: 'sheep', ru: 'овца', img: './sheep.jpg?v=2' },
+  { en: 'lion', ru: 'лев', img: './lion.jpg?v=2' },
+  { en: 'happy', ru: 'радостный', img: './happy.jpg?v=2' },
+  { en: 'sad', ru: 'грустный', img: './sad.jpg?v=2' },
+  { en: 'tired', ru: 'уставший', img: './tired.jpg?v=2' },
+  { en: 'good', ru: 'хорошо', img: './good.jpg?v=2' },
+  { en: 'fine', ru: 'нормально', img: './fine.jpg?v=2' },
+  { en: 'banana', ru: 'банан', img: './banana.jpg?v=2' },
+  { en: 'orange', ru: 'апельсин', img: './orange.jpg?v=2' },
+  { en: 'apple', ru: 'яблоко', img: './apple.jpg?v=2' },
+  { en: 'bread', ru: 'хлеб', img: './bread.jpg?v=2' },
+  { en: 'milk', ru: 'молоко', img: './milk.jpg?v=2' },
+  { en: 'cheese', ru: 'сыр', img: './cheese.jpg?v=2' },
+  { en: 'meat', ru: 'мясо', img: './meat.jpg?v=2' },
+  { en: 'chicken', ru: 'курица', img: './chicken.jpg?v=2' },
+  { en: 'pasta', ru: 'макароны', img: './pasta.jpg?v=2' },
+  { en: 'ice cream', ru: 'мороженое', img: './ice-cream.jpg?v=2' },
+  { en: 'book', ru: 'книга', img: './book.jpg?v=2' },
+  { en: 'pen', ru: 'ручка', img: './pen.jpg?v=2' },
+  { en: 'pencil', ru: 'карандаш', img: './pencil.jpg?v=2' },
+  { en: 'bag', ru: 'сумка, рюкзак', img: './bag.jpg?v=2' },
+  { en: 'ruler', ru: 'линейка', img: './ruler.jpg?v=2' }
+];
+
+// Видео после каждого уровня
+const LEVEL_VIDEOS = {
+  1: './level1-complete.mp4',
+  2: './level2-complete.mp4',
+  3: './level3-complete.mp4'
+};
+
+const state = {
+  playerName: '', mode: 'any', currentLevel: 1, wordIndex: 0,
+  score: 0, correctCount: 0, wrongCount: 0,
+  learned: [], shuffledWords: [], currentWord: null,
+  slots: [], usedLetters: [], muted: false,
+  pendingNextLevel: null  // какой уровень показать после видео
+};
+
+let audioCtx = null;
+function getAudio() {
+  if (!audioCtx) {
+    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+    catch(e) { return null; }
+  }
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  return audioCtx;
+}
+
+function playTone(freq, duration, type = 'sine', volume = 0.15, delay = 0) {
+  if (state.muted) return;
+  const ctx = getAudio();
+  if (!ctx) return;
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = type;
+  osc.frequency.value = freq;
+  gain.gain.setValueAtTime(0, ctx.currentTime + delay);
+  gain.gain.linearRampToValueAtTime(volume, ctx.currentTime + delay + 0.01);
+  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + duration);
+  osc.connect(gain).connect(ctx.destination);
+  osc.start(ctx.currentTime + delay);
+  osc.stop(ctx.currentTime + delay + duration);
+}
+
+const sounds = {
+  success() { playTone(523.25, 0.15, 'triangle', 0.2, 0); playTone(659.25, 0.15, 'triangle', 0.2, 0.1); playTone(783.99, 0.25, 'triangle', 0.2, 0.2); },
+  error() { playTone(220, 0.15, 'sawtooth', 0.15, 0); playTone(165, 0.25, 'sawtooth', 0.15, 0.12); },
+  click() { playTone(800, 0.05, 'square', 0.08); },
+  win() { playTone(523.25, 0.12, 'triangle', 0.2, 0); playTone(659.25, 0.12, 'triangle', 0.2, 0.1); playTone(783.99, 0.12, 'triangle', 0.2, 0.2); playTone(1046.5, 0.4, 'triangle', 0.25, 0.3); },
+  explode() { playTone(1200, 0.08, 'sawtooth', 0.1, 0); playTone(800, 0.1, 'square', 0.08, 0.05); playTone(400, 0.15, 'sine', 0.12, 0.1); }
+};
+
+const muteBtn = document.getElementById('muteBtn');
+muteBtn.addEventListener('click', () => {
+  state.muted = !state.muted;
+  muteBtn.textContent = state.muted ? '🔇' : '🔊';
+  muteBtn.classList.toggle('muted', state.muted);
+  // Применяем mute к видео
+  const video = document.getElementById('levelVideo');
+  if (video) video.muted = state.muted;
+  if (!state.muted) getAudio();
+});
+
+function createExplosion(byte) {
+  const rect = byte.getBoundingClientRect();
+  const cx = rect.left + rect.width / 2;
+  const cy = rect.top + rect.height / 2;
+  const splashCount = 20;
+  for (let i = 0; i < splashCount; i++) {
+    const splash = document.createElement('div');
+    splash.className = 'splash';
+    splash.style.left = cx + 'px';
+    splash.style.top = cy + 'px';
+    const size = 4 + Math.random() * 8;
+    splash.style.width = size + 'px';
+    splash.style.height = size + 'px';
+    document.body.appendChild(splash);
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 60 + Math.random() * 80;
+    const dx = Math.cos(angle) * distance;
+    const dy = Math.sin(angle) * distance;
+    splash.animate([
+      { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+      { transform: `translate(${dx}px, ${dy}px) scale(0)`, opacity: 0 }
+    ], { duration: 700 + Math.random() * 300, easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }).onfinish = () => splash.remove();
+  }
+  sounds.explode();
+}
+
+document.querySelectorAll('.byte').forEach(byte => {
+  byte.addEventListener('mouseenter', () => {
+    if (byte.classList.contains('exploding')) return;
+    byte.classList.add('exploding');
+    createExplosion(byte);
+    setTimeout(() => byte.classList.remove('exploding'), 2000);
+  });
+});
+
+function speak(text, onEnd) {
+  if (state.muted) { onEnd && onEnd(); return; }
+  if (!('speechSynthesis' in window)) { onEnd && onEnd(); return; }
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = 0.75;
+  u.pitch = 1;
+  u.volume = 1;
+  if (onEnd) u.onend = onEnd;
+  window.speechSynthesis.speak(u);
+}
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function $(sel) { return document.querySelector(sel); }
+function $$(sel) { return document.querySelectorAll(sel); }
+
+function showScreen(id) {
+  $$('.screen').forEach(s => s.classList.add('hidden'));
+  const target = document.getElementById(id);
+  target.classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderProgress(containerId, total, current) {
+  const c = document.getElementById(containerId);
+  c.innerHTML = '';
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'dot';
+    if (i < current) dot.classList.add('done');
+    else if (i === current) dot.classList.add('current');
+    c.appendChild(dot);
+  }
+}
+
+function updateScoreCounter() {
+  document.getElementById('correctCount').textContent = state.correctCount;
+  document.getElementById('wrongCount').textContent = state.wrongCount;
+}
+
+const menuBtn = document.getElementById('menuBtn');
+const scoreCounter = document.getElementById('scoreCounter');
+
+menuBtn.addEventListener('click', () => {
+  sounds.click();
+  hideVideoScreen();
+  showScreen('screen-welcome');
+  menuBtn.classList.remove('visible');
+  scoreCounter.classList.remove('visible');
+});
+
+function showGameUI() {
+  if (state.currentLevel > 1) {
+    menuBtn.classList.add('visible');
+    scoreCounter.classList.add('visible');
+    updateScoreCounter();
+  } else {
+    menuBtn.classList.add('visible');
+  }
+}
+
+// ===== ВИДЕО-ЭКРАН =====
+const videoScreen = document.getElementById('videoScreen');
+const levelVideo = document.getElementById('levelVideo');
+const videoContinueBtn = document.getElementById('videoContinueBtn');
+
+function showLevelVideo(levelNumber, afterCallback) {
+  const videoSrc = LEVEL_VIDEOS[levelNumber];
+  if (!videoSrc) {
+    afterCallback();
+    return;
+  }
+  
+  state.pendingNextLevel = afterCallback;
+  levelVideo.src = videoSrc;
+  levelVideo.muted = state.muted;
+  levelVideo.loop = true;
+  videoScreen.classList.add('visible');
+  
+  // Запуск видео
+  levelVideo.play().catch(e => {
+    console.warn('Видео не запустилось автоматически:', e);
+  });
+}
+
+function hideVideoScreen() {
+  videoScreen.classList.remove('visible');
+  levelVideo.pause();
+  levelVideo.src = '';
+}
+
+videoContinueBtn.addEventListener('click', () => {
+  sounds.click();
+  hideVideoScreen();
+  if (state.pendingNextLevel) {
+    const callback = state.pendingNextLevel;
+    state.pendingNextLevel = null;
+    callback();
+  }
+});
+
+$('#startBtn').addEventListener('click', () => {
+  sounds.click();
+  const name = $('#playerName').value.trim();
+  state.playerName = name || 'Игрок';
+  const activeBtn = $('.level-btn.active');
+  if (activeBtn) state.mode = parseInt(activeBtn.dataset.level);
+  else state.mode = 'any';
+  state.score = 0;
+  state.correctCount = 0;
+  state.wrongCount = 0;
+  state.learned = [];
+  state.shuffledWords = shuffle(WORDS).slice(0, 8);
+  state.wordIndex = 0;
+  if (state.mode === 'any') { state.currentLevel = 1; startLevel(1); }
+  else { state.currentLevel = state.mode; startLevel(state.mode); }
+});
+
+$$('.level-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    sounds.click();
+    $$('.level-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+function startLevel(level) {
+  state.currentLevel = level;
+  state.wordIndex = 0;
+  showGameUI();
+  if (level === 1) { showScreen('screen-level1'); renderLevel1(); }
+  else if (level === 2) { showScreen('screen-level2'); renderLevel2(); }
+  else if (level === 3) { showScreen('screen-level3'); renderLevel3(); }
+}
+
+// ===== УРОВЕНЬ 1 =====
+function renderLevel1() {
+  const word = state.shuffledWords[state.wordIndex];
+  renderProgress('progress1', state.shuffledWords.length, state.wordIndex);
+  const imgContainer = $('#l1Image');
+  imgContainer.innerHTML = '';
+  imgContainer.style.width = '220px';
+  imgContainer.style.height = '220px';
+  const img = document.createElement('img');
+  img.src = word.img;
+  img.alt = word.en;
+  img.onerror = function() {
+    this.style.display = 'none';
+    const fallback = document.createElement('div');
+    fallback.className = 'fallback';
+    fallback.textContent = word.en.charAt(0).toUpperCase();
+    imgContainer.appendChild(fallback);
+  };
+  imgContainer.appendChild(img);
+  $('#l1En').textContent = word.en;
+  $('#l1Ru').textContent = word.ru;
+  const inputField = $('#l1Input');
+  inputField.value = '';
+  inputField.classList.remove('correct', 'wrong');
+  inputField.disabled = false;
+  inputField.focus();
+  setTimeout(() => speak(word.en), 300);
+}
+
+$('#l1Speak').addEventListener('click', () => { sounds.click(); speak(state.shuffledWords[state.wordIndex].en); });
+$('#l1Next').addEventListener('click', () => {
+  sounds.click();
+  const word = state.shuffledWords[state.wordIndex];
+  if (!state.learned.find(w => w.en === word.en)) state.learned.push(word);
+  state.wordIndex++;
+  if (state.wordIndex >= state.shuffledWords.length) finishLevel();
+  else renderLevel1();
+});
+
+$('#l1Input').addEventListener('input', function(e) {
+  const input = e.target;
+  const currentWord = state.shuffledWords[state.wordIndex];
+  const cleanInput = input.value.toLowerCase().trim().replace(/\s/g, '');
+  const cleanWord = currentWord.en.toLowerCase().replace(/\s/g, '');
+  if (cleanInput === cleanWord) {
+    input.classList.add('correct');
+    input.classList.remove('wrong');
+    input.disabled = true;
+    sounds.success();
+  } else if (cleanInput.length === cleanWord.length) {
+    input.classList.add('wrong');
+    setTimeout(() => input.classList.remove('wrong'), 500);
+    sounds.error();
+  }
+});
+
+// ===== УРОВЕНЬ 2 =====
+function renderLevel2() {
+  const word = state.shuffledWords[state.wordIndex];
+  state.currentWord = word;
+  state.slots = new Array(word.en.replace(/\s/g,'').length).fill(null);
+  state.usedLetters = [];
+  renderProgress('progress2', state.shuffledWords.length, state.wordIndex);
+  
+  const imgContainer = $('#l2Image');
+  imgContainer.innerHTML = '';
+  imgContainer.style.width = '180px';
+  imgContainer.style.height = '180px';
+  const img = document.createElement('img');
+  img.src = word.img;
+  img.alt = word.en;
+  img.onerror = function() {
+    this.style.display = 'none';
+    const fallback = document.createElement('div');
+    fallback.className = 'fallback';
+    fallback.style.fontSize = '90px';
+    fallback.textContent = word.en.charAt(0).toUpperCase();
+    imgContainer.appendChild(fallback);
+  };
+  imgContainer.appendChild(img);
+  
+  $('#l2Ru').textContent = word.ru;
+  const slotsEl = $('#l2Slots');
+  slotsEl.innerHTML = '';
+  const cleanWord = word.en.replace(/\s/g,'');
+  for (let i = 0; i < cleanWord.length; i++) {
+    const s = document.createElement('div');
+    s.className = 'slot';
+    s.dataset.index = i;
+    slotsEl.appendChild(s);
+  }
+  const letters = shuffle(cleanWord.split('').map((ch, i) => ({ ch, id: i })));
+  const lettersEl = $('#l2Letters');
+  lettersEl.innerHTML = '';
+  letters.forEach(l => {
+    const t = document.createElement('div');
+    t.className = 'letter-tile';
+    t.textContent = l.ch.toUpperCase();
+    t.dataset.id = l.id;
+    t.dataset.ch = l.ch;
+    t.addEventListener('click', () => onLetterClick(t));
+    lettersEl.appendChild(t);
+  });
+}
+
+function onLetterClick(tile) {
+  if (tile.classList.contains('used')) return;
+  sounds.click();
+  const ch = tile.dataset.ch;
+  const emptyIdx = state.slots.indexOf(null);
+  if (emptyIdx === -1) return;
+  state.slots[emptyIdx] = { ch, tileId: tile.dataset.id };
+  tile.classList.add('used');
+  updateSlotsView();
+  if (!state.slots.includes(null)) checkLevel2();
+}
+
+function onSlotClick(idx) {
+  if (state.slots[idx] === null) return;
+  sounds.click();
+  const data = state.slots[idx];
+  state.slots[idx] = null;
+  const tile = $(`.letter-tile[data-id="${data.tileId}"]`);
+  if (tile) tile.classList.remove('used');
+  updateSlotsView();
+}
+
+function updateSlotsView() {
+  const slotsEl = $('#l2Slots');
+  [...slotsEl.children].forEach((s, i) => {
+    if (state.slots[i] === null) { s.textContent = ''; s.classList.remove('filled'); }
+    else { s.textContent = state.slots[i].ch.toUpperCase(); s.classList.add('filled'); }
+  });
+}
+
+function checkLevel2() {
+  const assembled = state.slots.map(s => s.ch).join('');
+  const cleanWord = state.currentWord.en.replace(/\s/g,'');
+  if (assembled === cleanWord) {
+    sounds.success();
+    state.score++;
+    state.correctCount++;
+    updateScoreCounter();
+    if (!state.learned.find(w => w.en === state.currentWord.en)) state.learned.push(state.currentWord);
+    setTimeout(() => {
+      state.wordIndex++;
+      if (state.wordIndex >= state.shuffledWords.length) finishLevel();
+      else renderLevel2();
+    }, 900);
+  } else {
+    sounds.error();
+    state.wrongCount++;
+    updateScoreCounter();
+    $('#l2Slots').style.animation = 'shake .4s ease';
+    setTimeout(() => { $('#l2Slots').style.animation = ''; resetLevel2(); }, 500);
+  }
+}
+
+function resetLevel2() {
+  state.slots = new Array(state.currentWord.en.replace(/\s/g,'').length).fill(null);
+  $$('.letter-tile').forEach(t => t.classList.remove('used'));
+  updateSlotsView();
+}
+
+$('#l2Reset').addEventListener('click', () => { sounds.click(); resetLevel2(); });
+$('#l2Hint').addEventListener('click', () => {
+  sounds.click();
+  const word = state.currentWord.en.replace(/\s/g,'').toUpperCase();
+  const slotsEl = $('#l2Slots');
+  [...slotsEl.children].forEach((s, i) => { s.textContent = word[i]; s.classList.add('filled'); s.style.color = 'var(--lime-light)'; });
+  speak(state.currentWord.en);
+  setTimeout(() => { resetLevel2(); [...slotsEl.children].forEach(s => s.style.color = ''); }, 1500);
+});
+$('#l2Slots').addEventListener('click', (e) => { const slot = e.target.closest('.slot'); if (!slot) return; onSlotClick(parseInt(slot.dataset.index)); });
+
+// ===== УРОВЕНЬ 3 =====
+function renderLevel3() {
+  const correct = state.shuffledWords[state.wordIndex];
+  renderProgress('progress3', state.shuffledWords.length, state.wordIndex);
+  $('#l3WordDisplay').textContent = correct.en;
+  const others = WORDS.filter(w => w.en !== correct.en);
+  const wrongOnes = shuffle(others).slice(0, 3);
+  const options = shuffle([correct, ...wrongOnes]);
+  const container = $('#l3Options');
+  container.innerHTML = '';
+  options.forEach(opt => {
+    const el = document.createElement('div');
+    el.className = 'option';
+    const img = document.createElement('img');
+    img.src = opt.img;
+    img.alt = opt.en;
+    img.onerror = function() {
+      this.style.display = 'none';
+      const fallback = document.createElement('div');
+      fallback.className = 'fallback';
+      fallback.textContent = opt.en.charAt(0).toUpperCase();
+      el.appendChild(fallback);
+    };
+    el.appendChild(img);
+    el.dataset.en = opt.en;
+    el.addEventListener('click', () => onOptionClick(el, opt, correct));
+    container.appendChild(el);
+  });
+  setTimeout(() => speak(correct.en), 400);
+}
+
+function onOptionClick(el, chosen, correct) {
+  if (el.classList.contains('correct') || el.classList.contains('wrong-locked')) return;
+  if (chosen.en === correct.en) {
+    el.classList.add('correct');
+    sounds.success();
+    state.score++;
+    state.correctCount++;
+    updateScoreCounter();
+    if (!state.learned.find(w => w.en === correct.en)) state.learned.push(correct);
+    $$('.option').forEach(o => o.style.pointerEvents = 'none');
+    setTimeout(() => { state.wordIndex++; if (state.wordIndex >= state.shuffledWords.length) finishLevel(); else renderLevel3(); }, 1000);
+  } else {
+    el.classList.add('wrong');
+    sounds.error();
+    state.wrongCount++;
+    updateScoreCounter();
+    el.classList.add('wrong-locked');
+    setTimeout(() => el.classList.remove('wrong'), 500);
+  }
+}
+
+$('#l3Repeat').addEventListener('click', () => { sounds.click(); speak(state.shuffledWords[state.wordIndex].en); });
+
+// ===== ЗАВЕРШЕНИЕ УРОВНЯ С ВИДЕО =====
+function finishLevel() {
+  if (state.mode === 'any' && state.currentLevel < 3) {
+    // Показываем видео текущего уровня, потом переходим к следующему
+    const nextLevel = state.currentLevel + 1;
+    showLevelVideo(state.currentLevel, () => {
+      state.wordIndex = 0;
+      state.shuffledWords = shuffle(WORDS).slice(0, 8);
+      startLevel(nextLevel);
+    });
+  } else if (state.currentLevel === 3) {
+    // Финальное видео после 3 уровня
+    showLevelVideo(3, () => {
+      showResults();
+    });
+  } else {
+    // Если выбран конкретный уровень — тоже показываем видео
+    showLevelVideo(state.currentLevel, () => {
+      showResults();
+    });
+  }
+}
+
+function showResults() {
+  showScreen('screen-results');
+  sounds.win();
+  menuBtn.classList.remove('visible');
+  scoreCounter.classList.remove('visible');
+  const total = state.shuffledWords.length;
+  const score = state.score;
+  const starsCount = score === total ? 3 : score >= total * 0.6 ? 2 : score > 0 ? 1 : 0;
+  $$('#starsRow .star').forEach((s, i) => s.classList.toggle('on', i < starsCount));
+  const name = state.playerName;
+  let rank;
+  if (starsCount === 3) rank = `ENGLISH STAR, ${name.toUpperCase()}! ★`;
+  else if (starsCount === 2) rank = `GREAT JOB, ${name.toUpperCase()}!`;
+  else if (starsCount === 1) rank = `GOOD TRY, ${name.toUpperCase()}!`;
+  else rank = `ПОПРОБУЙ ЕЩЁ, ${name.toUpperCase()}!`;
+  $('#rankTitle').textContent = rank;
+  $('#scoreText').textContent = `Верно: ${state.correctCount} · Ошибок: ${state.wrongCount} · Собрано: ${score}/${total}`;
+  const list = $('#learnedList');
+  list.innerHTML = '<h3>Изученные слова</h3>';
+  if (state.learned.length === 0) { list.innerHTML += '<p style="opacity:0.5;font-size:14px;">Пока пусто — попробуй ещё раз!</p>'; }
+  else {
+    state.learned.forEach(w => {
+      const item = document.createElement('div');
+      item.className = 'learned-item';
+      const thumb = document.createElement('div');
+      thumb.className = 'thumb';
+      const thumbImg = document.createElement('img');
+      thumbImg.src = w.img;
+      thumbImg.alt = w.en;
+      thumbImg.onerror = function() { this.style.display = 'none'; const fallback = document.createElement('div'); fallback.className = 'fallback'; fallback.textContent = w.en.charAt(0).toUpperCase(); thumb.appendChild(fallback); };
+      thumb.appendChild(thumbImg);
+      item.appendChild(thumb);
+      item.innerHTML += `<span class="en">${w.en}</span><span class="ru">${w.ru}</span>`;
+      list.appendChild(item);
+    });
+  }
+}
+
+$('#restartBtn').addEventListener('click', () => { sounds.click(); showScreen('screen-welcome'); });
+
+document.addEventListener('touchstart', () => getAudio(), { once: true });
+document.addEventListener('click', () => getAudio(), { once: true });
+
+// ===== ДИАГНОСТИКА =====
+console.log(' Проверка картинок...');
+WORDS.forEach(w => {
+  const testImg = new Image();
+  testImg.onload = () => console.log('✅ OK:', w.img);
+  testImg.onerror = () => console.error('❌ ОШИБКА:', w.img, '— файл не найден!');
+  testImg.src = w.img;
+});
+
+// Проверка видео
+console.log(' Проверка видео...');
+Object.entries(LEVEL_VIDEOS).forEach(([level, src]) => {
+  const testVideo = document.createElement('video');
+  testVideo.onloadeddata = () => console.log('✅ Видео OK:', src);
+  testVideo.onerror = () => console.error(' Видео ОШИБКА:', src, '— файл не найден!');
+  testVideo.src = src;
+});
+</script>
+</body>
+</html>
