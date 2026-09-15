@@ -385,15 +385,16 @@
     object-fit: contain;
     border-radius: 16px;
   }
-  .video-screen .video-btn {
-    margin-top: 24px;
-    max-width: 320px;
-  }
   .video-screen .skip-hint {
     color: var(--cream);
-    opacity: 0.5;
+    opacity: 0.4;
     font-size: 13px;
-    margin-top: 12px;
+    margin-top: 16px;
+    animation: hintPulse 2s ease-in-out infinite;
+  }
+  @keyframes hintPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
   }
 
   .center { text-align: center; }
@@ -411,7 +412,7 @@
 </head>
 <body>
 
-<button class="mute-btn" id="muteBtn" title="Звук"></button>
+<button class="mute-btn" id="muteBtn" title="Звук">🔊</button>
 <button class="menu-btn" id="menuBtn">← Меню</button>
 <div class="score-counter" id="scoreCounter">
   <span class="correct-count">✓ <span id="correctCount">0</span></span>
@@ -421,9 +422,8 @@
 
 <!-- ===== ЭКРАН С ВИДЕО ПОСЛЕ УРОВНЯ ===== -->
 <div class="video-screen" id="videoScreen">
-  <video id="levelVideo" autoplay loop muted playsinline></video>
-  <button class="btn video-btn" id="videoContinueBtn">Дальше →</button>
-  <div class="skip-hint">Нажми, чтобы продолжить</div>
+  <video id="levelVideo" autoplay muted playsinline></video>
+  <div class="skip-hint">⏭ Нажми в любое место, чтобы пропустить</div>
 </div>
 
 <svg class="web web-tl" viewBox="0 0 200 200" fill="none"><g stroke="#C8FF2E" stroke-width="1" opacity="0.6"><path d="M0,0 L200,200 M0,50 L150,200 M0,100 L100,200 M0,150 L50,200"/><path d="M50,0 L200,150 M100,0 L200,100 M150,0 L200,50"/><circle cx="50" cy="50" r="2" fill="#C8FF2E"/><circle cx="100" cy="100" r="2" fill="#C8FF2E"/></g></svg>
@@ -496,12 +496,13 @@
   <div class="card">
     <svg class="web-mini" viewBox="0 0 120 120" fill="none"><g stroke="#C8FF2E" stroke-width="1" opacity="0.5"><path d="M0,0 L120,120 M0,60 L60,120"/><circle cx="40" cy="40" r="2" fill="#C8FF2E"/></g></svg>
     <div class="listen-hint"><span class="speaker">🔊</span>Слушай слово и выбери картинку</div>
-    <button class="btn secondary" id="l3Repeat" style="margin: 12px 0;">🔊 Повторить слово</button>
+    <button class="btn secondary" id="l3Repeat" style="margin: 12px 0;"> Повторить слово</button>
     <div class="options" id="l3Options"></div>
     <div class="word-display-l3" id="l3WordDisplay">word</div>
   </div>
 </div>
 
+<!-- ===== ЭКРАН РЕЗУЛЬТАТОВ (без video-placeholder) ===== -->
 <div id="screen-results" class="screen hidden">
   <div class="center"><span class="badge">ИТОГИ</span></div>
   <div class="stars" id="starsRow">
@@ -509,10 +510,7 @@
   </div>
   <div class="rank" id="rankTitle">GOOD JOB!</div>
   <p class="subtitle center" id="scoreText">Ты собрал 0 слов</p>
-  <div class="video-placeholder">
-    🎬 Здесь будет видео-поздравление<br>
-    <small style="opacity:0.6;">&lt;video&gt; placeholder</small>
-  </div>
+
   <div class="learned-list" id="learnedList"><h3>Изученные слова</h3></div>
   <button class="btn mt-16" id="restartBtn">🔄 ИГРАТЬ ЕЩЁ РАЗ</button>
 </div>
@@ -559,7 +557,6 @@ const WORDS = [
   { en: 'ruler', ru: 'линейка', img: './ruler.jpg?v=2' }
 ];
 
-// Видео после каждого уровня
 const LEVEL_VIDEOS = {
   1: './level1-complete.mp4',
   2: './level2-complete.mp4',
@@ -571,7 +568,8 @@ const state = {
   score: 0, correctCount: 0, wrongCount: 0,
   learned: [], shuffledWords: [], currentWord: null,
   slots: [], usedLetters: [], muted: false,
-  pendingNextLevel: null  // какой уровень показать после видео
+  pendingNextLevel: null,
+  videoHandled: false
 };
 
 let audioCtx = null;
@@ -613,7 +611,6 @@ muteBtn.addEventListener('click', () => {
   state.muted = !state.muted;
   muteBtn.textContent = state.muted ? '🔇' : '🔊';
   muteBtn.classList.toggle('muted', state.muted);
-  // Применяем mute к видео
   const video = document.getElementById('levelVideo');
   if (video) video.muted = state.muted;
   if (!state.muted) getAudio();
@@ -723,10 +720,8 @@ function showGameUI() {
   }
 }
 
-// ===== ВИДЕО-ЭКРАН =====
 const videoScreen = document.getElementById('videoScreen');
 const levelVideo = document.getElementById('levelVideo');
-const videoContinueBtn = document.getElementById('videoContinueBtn');
 
 function showLevelVideo(levelNumber, afterCallback) {
   const videoSrc = LEVEL_VIDEOS[levelNumber];
@@ -736,15 +731,30 @@ function showLevelVideo(levelNumber, afterCallback) {
   }
   
   state.pendingNextLevel = afterCallback;
+  state.videoHandled = false;
   levelVideo.src = videoSrc;
   levelVideo.muted = state.muted;
-  levelVideo.loop = true;
+  levelVideo.loop = false;
+  levelVideo.currentTime = 0;
   videoScreen.classList.add('visible');
   
-  // Запуск видео
-  levelVideo.play().catch(e => {
-    console.warn('Видео не запустилось автоматически:', e);
-  });
+  const playPromise = levelVideo.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(e => {
+      console.warn('Видео не запустилось автоматически:', e);
+      setTimeout(() => {
+        if (!state.videoHandled) {
+          state.videoHandled = true;
+          hideVideoScreen();
+          if (state.pendingNextLevel) {
+            const cb = state.pendingNextLevel;
+            state.pendingNextLevel = null;
+            cb();
+          }
+        }
+      }, 500);
+    });
+  }
 }
 
 function hideVideoScreen() {
@@ -753,13 +763,28 @@ function hideVideoScreen() {
   levelVideo.src = '';
 }
 
-videoContinueBtn.addEventListener('click', () => {
-  sounds.click();
+levelVideo.addEventListener('ended', () => {
+  if (state.videoHandled) return;
+  state.videoHandled = true;
+  setTimeout(() => {
+    hideVideoScreen();
+    if (state.pendingNextLevel) {
+      const cb = state.pendingNextLevel;
+      state.pendingNextLevel = null;
+      cb();
+    }
+  }, 600);
+});
+
+videoScreen.addEventListener('click', (e) => {
+  if (e.target === levelVideo) return;
+  if (state.videoHandled) return;
+  state.videoHandled = true;
   hideVideoScreen();
   if (state.pendingNextLevel) {
-    const callback = state.pendingNextLevel;
+    const cb = state.pendingNextLevel;
     state.pendingNextLevel = null;
-    callback();
+    cb();
   }
 });
 
@@ -797,7 +822,6 @@ function startLevel(level) {
   else if (level === 3) { showScreen('screen-level3'); renderLevel3(); }
 }
 
-// ===== УРОВЕНЬ 1 =====
 function renderLevel1() {
   const word = state.shuffledWords[state.wordIndex];
   renderProgress('progress1', state.shuffledWords.length, state.wordIndex);
@@ -853,7 +877,6 @@ $('#l1Input').addEventListener('input', function(e) {
   }
 });
 
-// ===== УРОВЕНЬ 2 =====
 function renderLevel2() {
   const word = state.shuffledWords[state.wordIndex];
   state.currentWord = word;
@@ -972,7 +995,6 @@ $('#l2Hint').addEventListener('click', () => {
 });
 $('#l2Slots').addEventListener('click', (e) => { const slot = e.target.closest('.slot'); if (!slot) return; onSlotClick(parseInt(slot.dataset.index)); });
 
-// ===== УРОВЕНЬ 3 =====
 function renderLevel3() {
   const correct = state.shuffledWords[state.wordIndex];
   renderProgress('progress3', state.shuffledWords.length, state.wordIndex);
@@ -1026,10 +1048,8 @@ function onOptionClick(el, chosen, correct) {
 
 $('#l3Repeat').addEventListener('click', () => { sounds.click(); speak(state.shuffledWords[state.wordIndex].en); });
 
-// ===== ЗАВЕРШЕНИЕ УРОВНЯ С ВИДЕО =====
 function finishLevel() {
   if (state.mode === 'any' && state.currentLevel < 3) {
-    // Показываем видео текущего уровня, потом переходим к следующему
     const nextLevel = state.currentLevel + 1;
     showLevelVideo(state.currentLevel, () => {
       state.wordIndex = 0;
@@ -1037,12 +1057,10 @@ function finishLevel() {
       startLevel(nextLevel);
     });
   } else if (state.currentLevel === 3) {
-    // Финальное видео после 3 уровня
     showLevelVideo(3, () => {
       showResults();
     });
   } else {
-    // Если выбран конкретный уровень — тоже показываем видео
     showLevelVideo(state.currentLevel, () => {
       showResults();
     });
@@ -1092,8 +1110,7 @@ $('#restartBtn').addEventListener('click', () => { sounds.click(); showScreen('s
 document.addEventListener('touchstart', () => getAudio(), { once: true });
 document.addEventListener('click', () => getAudio(), { once: true });
 
-// ===== ДИАГНОСТИКА =====
-console.log(' Проверка картинок...');
+console.log('🔍 Проверка картинок...');
 WORDS.forEach(w => {
   const testImg = new Image();
   testImg.onload = () => console.log('✅ OK:', w.img);
@@ -1101,12 +1118,11 @@ WORDS.forEach(w => {
   testImg.src = w.img;
 });
 
-// Проверка видео
-console.log(' Проверка видео...');
+console.log('🎬 Проверка видео...');
 Object.entries(LEVEL_VIDEOS).forEach(([level, src]) => {
   const testVideo = document.createElement('video');
   testVideo.onloadeddata = () => console.log('✅ Видео OK:', src);
-  testVideo.onerror = () => console.error(' Видео ОШИБКА:', src, '— файл не найден!');
+  testVideo.onerror = () => console.error('❌ Видео ОШИБКА:', src, '— файл не найден!');
   testVideo.src = src;
 });
 </script>
